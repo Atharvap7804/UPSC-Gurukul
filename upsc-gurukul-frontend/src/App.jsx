@@ -55,7 +55,7 @@ const [flippedCardIndex, setFlippedCardIndex] = useState(null); // Tracks which 
     const fetchTimelineAndData = async () => {
       try {
         // Step A: Fetch all unique dates for the active tab/subject
-        const datesResponse = await axios.get(`http://localhost:5000/api/ai/history-dates/${userContext.id}/${activeTab}`);
+        const datesResponse = await axios.get(` https://upsc-gurukul.onrender.com/api/ai/history-dates/${userContext.id}/${activeTab}`);
         if (datesResponse.data.success) {
           setAvailableDates(datesResponse.data.dates);
 
@@ -64,7 +64,7 @@ const [flippedCardIndex, setFlippedCardIndex] = useState(null); // Tracks which 
           setSelectedDate(latestDate);
 
           // Step B: Fetch data for that specific latest date
-          const dataResponse = await axios.get(`http://localhost:5000/api/ai/history/${userContext.id}/${activeTab}?date=${latestDate}`);
+          const dataResponse = await axios.get(` https://upsc-gurukul.onrender.com/api/ai/history/${userContext.id}/${activeTab}?date=${latestDate}`);
           if (dataResponse.data.success) {
             setGeneratedData(dataResponse.data.data);
           }
@@ -85,7 +85,7 @@ const [flippedCardIndex, setFlippedCardIndex] = useState(null); // Tracks which 
       return;
     }
     try {
-      const response = await axios.get(`http://localhost:5000/api/ai/history/${userContext.id}/${activeTab}?date=${dateVal}`);
+      const response = await axios.get(` https://upsc-gurukul.onrender.com/api/ai/history/${userContext.id}/${activeTab}?date=${dateVal}`);
       if (response.data.success) {
         setGeneratedData(response.data.data);
       }
@@ -106,7 +106,7 @@ const [flippedCardIndex, setFlippedCardIndex] = useState(null); // Tracks which 
     e.preventDefault();
     setLoading(true);
     try {
-      const response = await axios.post('http://localhost:5000/api/user/onboard', {
+      const response = await axios.post(' https://upsc-gurukul.onrender.com/api/user/onboard', {
         name,
         email,
         password,
@@ -128,7 +128,7 @@ const [flippedCardIndex, setFlippedCardIndex] = useState(null); // Tracks which 
     e.preventDefault();
     setLoading(true);
     try {
-      await axios.post('http://localhost:5000/api/user/onboard', {
+      await axios.post(' https://upsc-gurukul.onrender.com/api/user/onboard', {
         name: name || "Atharva Pawar",
         email,
         password,
@@ -169,7 +169,7 @@ const [flippedCardIndex, setFlippedCardIndex] = useState(null); // Tracks which 
     setUserAnswers({});
 
     try {
-      const response = await axios.post('http://localhost:5000/api/ai/generate-material', {
+      const response = await axios.post(' https://upsc-gurukul.onrender.com/api/ai/generate-material', {
         videoUrl: videoUrl,
         userId: userContext.id,
         subject: activeTab
@@ -190,7 +190,7 @@ const [flippedCardIndex, setFlippedCardIndex] = useState(null); // Tracks which 
   const fetchScrapedUPSCNews = async () => {
     setLoadingNews(true);
     try {
-      const response = await axios.get('http://localhost:5000/api/ai/scrape-news');
+      const response = await axios.get(' https://upsc-gurukul.onrender.com/api/ai/scrape-news');
       if (response.data.success) {
         setNewsFeed(response.data.articles);
       }
