@@ -5,6 +5,7 @@
   "type": "module",
   "scripts": {
     "dev": "vite",
+    "prebuild": "npm install --os=linux --cpu=x64 lightningcss",
     "build": "vite build",
     "lint": "eslint .",
     "preview": "vite preview"
