@@ -3,6 +3,9 @@
   publish = "dist"
   command = "npm install && npm run build"
 
+[build.environment]
+  LIGHTNING_CSS_USE_WASM = "1"
+
 [[redirects]]
   from = "/*"
   to = "/index.html"
